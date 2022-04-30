@@ -5,7 +5,7 @@ import kotlin.math.min
 
 class Function(val variables: List<Variable>, val expressions: List<Variable>) {
 
-    val table = mutableListOf<Variable>()
+    private val table = mutableListOf<Variable>()
 
     init {
         constructTable()
