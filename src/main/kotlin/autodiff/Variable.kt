@@ -4,11 +4,11 @@ import java.util.Collections
 
 open class Variable() {
 
-    protected val childrenMutable = mutableSetOf<Variable>()
-    val children = Collections.unmodifiableSet(childrenMutable)
-    val superDependencies = mutableSetOf<Variable>()
+    internal val children = mutableSetOf<Variable>()
+    internal val parents = mutableSetOf<Variable>()
 
     var name = "x"
+
     var x = 0.0
     var xDot = 0.0
     var xBar = 0.0
@@ -26,9 +26,8 @@ open class Variable() {
     }
 
     fun updateXBar(): Double {
-        xBar = 0.0
-        for (superDependency in superDependencies) {
-            xBar += superDependency.xBar * superDependency.partial(this)
+        for (parent in parents) {
+            xBar += parent.xBar * parent.partial(this)
         }
         return xBar
     }

@@ -3,8 +3,11 @@ package autodiff
 class Product(val factor1: Variable, val factor2: Variable) : Variable() {
 
     init {
-        childrenMutable.add(factor1)
-        childrenMutable.add(factor2)
+        children.add(factor1)
+        children.add(factor2)
+        factor1.parents.add(this)
+        factor2.parents.add(this)
+        name = "x*y"
     }
 
     override fun updateX(): Double {
@@ -19,5 +22,16 @@ class Product(val factor1: Variable, val factor2: Variable) : Variable() {
 
     override fun partial(variable: Variable): Double {
         return if (variable == factor1) factor2.x else factor1.x
+    }
+
+//    override fun equals(other: Any?): Boolean {
+//        return if (other != null && other is Product) {
+//            other.factor1 == factor1 && other.factor2 == factor2
+//        } else {
+//            false
+//        }
+//    }
+    override fun toString(): String {
+        return "$name = ${factor1.name} * ${factor2.name} -- ${super.toString()}"
     }
 }

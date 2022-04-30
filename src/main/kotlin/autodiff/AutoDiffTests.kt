@@ -1,16 +1,22 @@
 package autodiff
 fun main(args: Array<String>) {
+    val x0 =  Variable()
     val x1 =  Variable()
     val x2 =  Variable()
-    val x3 =  Variable()
-    val f = Function(x1*(x2+x3) + x1*x2)
-    x1.x = 3.0
-    x2.x = -4.0
-    x3.x = 9.0
-    x1.xDot = 0.0
-    x2.xDot = 0.0
-    x3.xDot = 1.0
-    f.constructTable()
-    println(f.forwardAutoDiff())
-    f.reverseAutoDiff()
+    val f0 = x0*(x1+x2) + x0*x1
+    val f1 = x1 + (x0*x1)
+    val f2 = x1 + x2 + (x0*x2)*(x1*x2)
+    val f = Function(listOf(x0, x1, x2), listOf(f0, f1, f2))
+    x0.x = 3.0
+    x1.x = -4.0
+    x2.x = 9.0
+//    f.printTable()
+    println(f.forwardAutoDiff(x0))
+    println(f.forwardAutoDiff(x1))
+    println(f.forwardAutoDiff(x2))
+    println()
+    println(f.reverseAutoDiff(f0))
+    println(f.reverseAutoDiff(f1))
+    println(f.reverseAutoDiff(f2))
+//    f.printTable()
 }
