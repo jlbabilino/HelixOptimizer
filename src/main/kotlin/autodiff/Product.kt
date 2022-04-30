@@ -21,7 +21,13 @@ class Product(val factor1: Variable, val factor2: Variable) : Variable() {
     }
 
     override fun partial(variable: Variable): Double {
-        return if (variable == factor1) factor2.x else factor1.x
+        return if (variable == factor1 && variable == factor2) {
+            2 * factor1.x
+        } else if (variable == factor1) {
+            factor2.x
+        } else {
+            factor1.x
+        }
     }
 
 //    override fun equals(other: Any?): Boolean {

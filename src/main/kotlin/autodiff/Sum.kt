@@ -21,7 +21,11 @@ class Sum(val addend1: Variable, val addend2: Variable) : Variable() {
     }
 
     override fun partial(variable: Variable): Double {
-        return 1.0
+        return if (addend1 == addend2) {
+            2.0
+        } else {
+            1.0
+        }
     }
 
 //    override fun equals(other: Any?): Boolean {

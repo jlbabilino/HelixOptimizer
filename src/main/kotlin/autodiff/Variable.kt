@@ -36,8 +36,16 @@ open class Variable() {
         return Sum(this, addend)
     }
 
+    operator fun minus(subtrahend: Variable): Variable {
+        return Difference(this, subtrahend)
+    }
+
     operator fun times(addend: Variable): Variable {
         return Product(this, addend)
+    }
+
+    operator fun div(divisor: Variable): Variable {
+        return Quotient(this, divisor)
     }
 
     override fun toString(): String {
