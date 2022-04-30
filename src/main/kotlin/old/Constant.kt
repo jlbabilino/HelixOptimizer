@@ -1,3 +1,5 @@
+package old
+
 data class Constant(val value: Double) : Expression() {
 
     override fun eval(bindings: Map<Variable, Double>): Double {

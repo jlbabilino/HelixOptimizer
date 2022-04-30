@@ -1,3 +1,5 @@
+package old
+
 import kotlin.math.pow
 
 infix fun Double.`^`(x: Double): Double {

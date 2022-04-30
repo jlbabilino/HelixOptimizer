@@ -1,3 +1,6 @@
+import old.Expression
+import old.Variable
+
 private operator fun Double.plus(expression: Expression): Expression {
     return expression + this
 }
