@@ -4,9 +4,10 @@ import kotlin.math.abs
 
 fun main(args: Array<String>) {
     val x = Variable()
-    val fEx = x*x*x - x*x
+    // 7x^3-4x^2-x-4
+    val fEx = x*x*x*7.0 - x*x*4.0 - x - 4.0
     val f = Function(listOf(x), listOf(fEx))
-    x.x = 50.0
+    x.x = -70.0
     println("Starting value: ${x.x}")
 //    var time = System.currentTimeMillis()
     for (i in 0..50) {
